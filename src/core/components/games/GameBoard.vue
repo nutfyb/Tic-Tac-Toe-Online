@@ -12,12 +12,12 @@
                         <CardProfile />
                     </div>
                     <span class="text-red-500 text-2xl font-bold">X</span>
-                    <p class="text-lg mt-2">
-                        <p>Score: {{ playerScore }}</p>
-                        <p v-if="consecutiveWins > 0" class="text-sm text-green-400">
+                    <div class="text-lg mt-2">
+                        <div>Score: {{ playerScore }}</div>
+                        <div v-if="consecutiveWins > 0" class="text-sm text-green-400">
                             Win Streak: {{ consecutiveWins }}/3
-                        </p>
-                    </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -504,6 +504,7 @@ $o-icon: "\f10c";
     }
 }
 </style>
+
 
 
 
