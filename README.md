@@ -1,5 +1,35 @@
-# Vue 3 + TypeScript + Vite
+## Tic Tac Toe Online Game
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A modern online multiplayer Tic Tac Toe game built with Vue 3, TypeScript, and Firebase.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Created by [Nutfyb](https://github.com/nutfyb)
+
+### Features
+
+- Real-time multiplayer gameplay
+- User authentication and profiles
+- Customizable display names
+- Achievement system
+- Player statistics tracking
+- Responsive design for all devices
+- Beautiful gradient UI with animations
+
+### Tech Stack
+
+- Vue 3 with Composition API
+- TypeScript
+- Firebase (Authentication, Firestore, Hosting)
+- Vite
+- Tailwind CSS
+
+### Getting Started
+
+1. Clone the repository : https://github.com/nutfyb/Tic-Tac-Toe-Online.git
+2. Install dependencies : `npm install`
+3. Run the development server : `npm run dev`
+
+### Firebase Configuration
+
+1. Create a new Firebase project at [Firebase Console](https://console.firebase.google.com)
+2. Enable Authentication and Firestore in your project
+3. Edit a `.env` file in the root directory with your Firebase config:
