@@ -7,8 +7,8 @@
           v-if="user">
           <a href="/profile" class="flex items-center space-x-2">
             <span class="mr-2 text-ellipsis hidden ml:block">{{ displayName.length > 3 ? displayName.slice(0,3) + '...' : displayName }}</span>
-            <div v-if="user.photoURL" class="w-8 h-8 rounded-full">
-              <img :src="userPhotoURL" alt="User profile" class="w-full h-full object-cover">
+            <div v-if="user.photoURL" class="w-8 h-8">
+              <img :src="userPhotoURL" alt="User profile" class="w-full h-full object-cover rounded-full">
             </div>
           </a>
         </div>
