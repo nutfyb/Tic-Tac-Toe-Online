@@ -26,3 +26,8 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Just to be thorough, also ignore any other common env file patterns
+.env.development
+.env.test
+.env.production
