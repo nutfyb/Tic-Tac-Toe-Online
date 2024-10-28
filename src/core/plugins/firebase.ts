@@ -16,13 +16,13 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCGmJBV-QiLVuOOK7cGwXL5yF8kKAqq-8w",
-  authDomain: "tic-tac-toe-online-5ea30.firebaseapp.com",
-  projectId: "tic-tac-toe-online-5ea30",
-  storageBucket: "tic-tac-toe-online-5ea30.appspot.com",
-  messagingSenderId: "1029232308172",
-  appId: "1:1029232308172:web:dc7a00d69a52717755f769",
-  measurementId: "G-EB26HKYNWT",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
