@@ -8,7 +8,7 @@
                         class="w-36 h-36 mb-4 rounded-[50%] border-4 border-white">
                     <!-- Add edit button next to display name -->
                     <div class="flex items-center gap-2">
-                        <h2 class="chalk-text text-2xl font-bold">{{ displayName }}</h2>
+                        <h2 class="chalk-text text-2xl font-bold">{{ displayName.length > 12 ? displayName.slice(0,12) + '...' : displayName }}</h2>
                         <button @click="showEditNamePopup = true" class="p-1 hover:bg-white/20 rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -24,8 +24,12 @@
                     class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div class="modal-content bg-gray-800 rounded-lg p-6 w-96">
                         <h3 class="text-white text-xl font-bold mb-4">Edit Display Name</h3>
-                        <input type="text" v-model="newDisplayName"
-                            class="w-full p-2 mb-4 rounded bg-gray-700 text-white" placeholder="Enter new display name">
+                        <input 
+                            type="text" 
+                            v-model="newDisplayName"
+                            maxlength="12"
+                            class="w-full p-2 mb-4 rounded bg-gray-700 text-white" 
+                            placeholder="Enter new display name">
                         <div class="flex justify-end gap-2">
                             <button @click="showEditNamePopup = false" class="px-4 py-2  text-white ">
                                 Cancel
@@ -135,7 +139,7 @@ const fetchDisplayName = async (userId: string) => {
     const userDoc = doc(db, 'users', userId);
     const userSnap = await getDoc(userDoc);
     if (userSnap.exists() && userSnap.data().displayName) {
-        displayName.value = userSnap.data().displayName;
+        displayName.value = userSnap.data().displayName.slice(0, 12);
     } else {
         displayName.value = 'User';
     }
@@ -208,15 +212,20 @@ const newDisplayName = ref('');
 
 // Add updateDisplayName function
 const updateDisplayName = async () => {
-    if (!user.value || !newDisplayName.value.trim()) return;
+    if (!user.value) return;
+    
+    // Trim and limit the name to 10 characters
+    const trimmedName = newDisplayName.value.trim().slice(0, 12);
+    
+    if (!trimmedName) return;
 
     try {
         const userDoc = doc(db, 'users', user.value.uid);
         await updateDoc(userDoc, {
-            displayName: newDisplayName.value.trim()
+            displayName: trimmedName
         });
 
-        displayName.value = newDisplayName.value.trim();
+        displayName.value = trimmedName;
         showEditNamePopup.value = false;
         newDisplayName.value = '';
 

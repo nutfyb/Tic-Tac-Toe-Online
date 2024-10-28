@@ -6,7 +6,7 @@
         <div class="relative hover:bg-blue-800 rounded-full transition-all duration-300 hover:scale-105 p-2"
           v-if="user">
           <router-link to="/profile" class="flex items-center space-x-2">
-            <span class="mr-2">{{ displayName }}</span>
+            <span class="mr-2 text-ellipsis">{{ displayName.length > 3 ? displayName.slice(0,3) + '...' : displayName }}</span>
             <div v-if="user.photoURL" class="w-8 h-8 rounded-full overflow-hidden">
               <img :src="userPhotoURL" alt="User profile" class="w-full h-full object-cover">
             </div>
@@ -16,10 +16,10 @@
           <span class="icon-user w-6 h-6"></span>
         </button>
         <router-link to="/rank"
-          class="p-2 rounded-full hover:bg-purple-800 transition-all duration-300 hover:scale-105">
+          class="p-2 ms:p-0 rounded-full hover:bg-purple-800 transition-all duration-300 hover:scale-105">
           <img src="/assets/icons/cup.svg" alt="Logout" loading="lazy" class="w-6 h-6">
         </router-link>
-        <button class="p-2 rounded-full hover:bg-red-500" @click="logout">
+        <button class="p-2 ms:p-0 rounded-full hover:bg-red-500" @click="logout">
           <img src="/assets/icons/logout.svg" alt="Logout" loading="lazy" class="w-6 h-6">
         </button>
       </div>
@@ -95,13 +95,13 @@ const navTop = () => {
 }
 
 const fetchDisplayName = async (userId: string) => {
-  const userDoc = doc(db, 'users', userId);
-  const userSnap = await getDoc(userDoc);
-  if (userSnap.exists() && userSnap.data().displayName) {
-    displayName.value = userSnap.data().displayName;
-  } else {
-    displayName.value = 'User';
-  }
+    const userDoc = doc(db, 'users', userId);
+    const userSnap = await getDoc(userDoc);
+    if (userSnap.exists() && userSnap.data().displayName) {
+        displayName.value = userSnap.data().displayName.slice(0, 10);
+    } else {
+        displayName.value = 'User';
+    }
 }
 const fetchUserPhoto = async () => {
   if (user.value?.photoURL) {

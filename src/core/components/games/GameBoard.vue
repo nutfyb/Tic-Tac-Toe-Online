@@ -26,7 +26,7 @@
                 <div class="card w-full sm:w-[80%] md:w-[70%] lg:w-[90%] mx-auto">
                     <div class="front rounded-2xl" :style="{ transform: isView ? 'rotateY(180deg)' : 'rotateY(0deg)' }">
                         <div class="w-full h-full flex flex-col items-center justify-center">
-                            <div class="board grid grid-cols-3 gap-2 p-4 rounded-xl w-full max-w-[400px]">
+                            <div class="board ms:h-[50vh] ms:w-[90vw] grid grid-cols-3 gap-2 p-4 rounded-xl w-full max-w-[400px]">
                                 <div v-for="(cell, index) in board" :key="index" @click="makeMove(index)"
                                     class="aspect-square flex items-center justify-center text-4xl font-bold cursor-pointer rounded-2xl"
                                     :class="getCellClass(cell)">
@@ -342,7 +342,6 @@ $o-icon: "\f10c";
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     background-color: #6648c4;
-    width: 100vw;
     max-width: 400px;
     aspect-ratio: 1 / 1;
 }
