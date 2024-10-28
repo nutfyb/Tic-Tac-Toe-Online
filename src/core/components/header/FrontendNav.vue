@@ -1,0 +1,168 @@
+<template>
+  <header class="text-white">
+    <nav class="container mx-auto px-4 py-2 flex justify-between items-center">
+      <router-link to="/" class="text-2xl font-bold text-glow">Tic Tac Toe</router-link>
+      <div class="flex space-x-4 items-center">
+        <div class="relative hover:bg-blue-800 rounded-full transition-all duration-300 hover:scale-105 p-2"
+          v-if="user">
+          <router-link to="/profile" class="flex items-center space-x-2">
+            <span class="mr-2">{{ displayName }}</span>
+            <div v-if="user.photoURL" class="w-8 h-8 rounded-full overflow-hidden">
+              <img :src="userPhotoURL" alt="User profile" class="w-full h-full object-cover">
+            </div>
+          </router-link>
+        </div>
+        <button v-else class="p-2 rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105">
+          <span class="icon-user w-6 h-6"></span>
+        </button>
+        <router-link to="/rank"
+          class="p-2 rounded-full hover:bg-purple-800 transition-all duration-300 hover:scale-105">
+          <img src="/assets/icons/cup.svg" alt="Logout" loading="lazy" class="w-6 h-6">
+        </router-link>
+        <button class="p-2 rounded-full hover:bg-red-500" @click="logout">
+          <img src="/assets/icons/logout.svg" alt="Logout" loading="lazy" class="w-6 h-6">
+        </button>
+      </div>
+    </nav>
+  </header>
+</template>
+
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref } from 'vue'
+import { auth, onAuthStateChanged, User, signOut, db, doc, getDoc } from '@/core/plugins/firebase';
+import { useRouter } from 'vue-router';
+
+const showMenu = ref(true);
+const previousScrollPosition = ref(0);
+const navTopScroll = ref(true);
+const showMenuPopup = ref(false);
+const isDropdownOpen = ref(false);
+const user = ref<User | null>(null);
+const displayName = ref('');
+const router = useRouter();
+const defaultAvatar = '/assets/images/cat.webp';
+
+const userPhotoURL = ref(defaultAvatar);
+
+const logout = async () => {
+  try {
+    await signOut(auth);
+    router.push('/');
+  } catch (error) {
+    console.error('Error logging out:', error);
+  }
+};
+
+// Function to close the drawer
+const closeDialog = () => {
+  showMenuPopup.value = false;
+  document.body.style.overflow = 'visible'; // Restore scrolling
+};
+
+// Function to handle window resize
+const handleResize = () => {
+  if (window.innerWidth >= 768) { // Assuming 768px is your breakpoint for mobile/tablet
+    closeDialog(); // Close the drawer when resizing to web size
+  }
+};
+
+const handleClickOutside = (event: MouseEvent) => {
+  const dropdown = document.querySelector('.relative');
+  if (dropdown && !dropdown.contains(event.target as Node)) {
+    isDropdownOpen.value = false;
+  }
+}
+
+const handleScroll = () => {
+  let currentScrollPosition = window.scrollY
+
+  if (currentScrollPosition < 0) {
+    currentScrollPosition = 0
+  }
+
+  if (currentScrollPosition > previousScrollPosition.value) {
+    showMenu.value = false;
+    showMenuPopup.value = false;
+  } else {
+    showMenu.value = true;
+  }
+
+  previousScrollPosition.value = currentScrollPosition
+}
+
+const navTop = () => {
+  navTopScroll.value = window.scrollY === 0;
+}
+
+const fetchDisplayName = async (userId: string) => {
+  const userDoc = doc(db, 'users', userId);
+  const userSnap = await getDoc(userDoc);
+  if (userSnap.exists() && userSnap.data().displayName) {
+    displayName.value = userSnap.data().displayName;
+  } else {
+    displayName.value = 'User';
+  }
+}
+const fetchUserPhoto = async () => {
+  if (user.value?.photoURL) {
+    try {
+      const response = await fetch(user.value.photoURL);
+      if (response.ok) {
+        userPhotoURL.value = user.value.photoURL;
+      } else {
+        userPhotoURL.value = defaultAvatar;
+      }
+    } catch (error) {
+      console.error('Error fetching user photo:', error);
+      userPhotoURL.value = defaultAvatar;
+    }
+  } else {
+    userPhotoURL.value = defaultAvatar;
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('scroll', navTop);
+  window.addEventListener('resize', handleResize);
+  document.addEventListener('click', handleClickOutside);
+
+  onAuthStateChanged(auth, (currentUser) => {
+    user.value = currentUser;
+    if (currentUser) {
+      fetchDisplayName(currentUser.uid);
+      fetchUserPhoto();
+    }
+  });
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+  window.removeEventListener('resize', handleResize);
+  document.removeEventListener('click', handleClickOutside);
+})
+</script>
+
+<style scoped lang="scss">
+.drawer-enter-active,
+.drawer-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.drawer-enter,
+.drawer-leave-to {
+  transform: translateX(100%);
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+}
+
+.translate-y-full {
+  transform: translateY(-100%);
+}
+
+header {
+  transition: 0.5s all ease-out;
+}
+</style>
