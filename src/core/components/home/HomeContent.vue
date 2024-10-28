@@ -54,6 +54,7 @@ onMounted(() => {
 const handleGameStart = async () => {
     if (isLoggedIn.value) {
         router.push('/game');
+        window.location.reload();
     } else {
         await login();
     }
@@ -81,6 +82,7 @@ const login = async () => {
                         displayName: defaultDisplayName
                     });
                     router.push('/game');
+                    window.location.reload();
                 } catch (setDocError) {
                     console.error('Error setting user document:', setDocError);
                     errorMessage.value = 'Login successful, but failed to create user profile. Please contact support.';
@@ -97,6 +99,7 @@ const login = async () => {
                 }
             } else {
                 router.push('/game');
+                window.location.reload();
             }
         }
         errorMessage.value = '';
@@ -130,6 +133,7 @@ const setDisplayName = async () => {
             showDisplayNameModal.value = false;
             errorMessage.value = '';
             router.push('/game');
+            window.location.reload();
         }
     } catch (error) {
         console.error('Error setting display name:', error);
