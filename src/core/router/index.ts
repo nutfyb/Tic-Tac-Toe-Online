@@ -13,7 +13,8 @@ const routes: Array<RouteRecordRaw> = [
     component: FrontendLayout,
     children: [
       {
-        path: "/:pathMatch(.*)*",
+        // Update the catch-all route to include locale
+        path: ":pathMatch(.*)*",
         name: "NotFound",
         component: lazyLoad("NotFoundView"),
       },
