@@ -1,6 +1,3 @@
-
-/* @import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap'); */
-
 body {
 	background: #1d1135;
 }
@@ -31,7 +28,6 @@ footer {
     background-image: linear-gradient(45deg, #ff00cc, #3333ff, #00ffff);
     background-size: 400% 400%;
     box-shadow: 0px 0px 25px 0px rgba(63, 94, 251, 0.5);
-
     animation: gradientSpin 5s ease infinite;
 }
 
@@ -39,75 +35,12 @@ footer {
     0% {
         background-position: 0% 50%;
     }
-
     50% {
         background-position: 100% 50%;
     }
-
     100% {
         background-position: 0% 50%;
     }
-}
-
-.content-between-sections-0 {
-	width: 100%;
-    margin-top: -105px;
-    height: 19rem;
-    display: block;
-    position: absolute;
-    z-index: 999;
-}
-
-.content-between-sections-1 {
-	width: 100%;
-    display: block;
-    position: relative;
-	z-index: 999;
-	box-shadow: 0px 0px 35px 50px #000000;
-}
-
-.content-between-sections-2 {
-	width: 100%;
-    height: 5rem;
-    display: block;
-    position: relative;
-    background: linear-gradient(#000000, #010715);
-	z-index: 98;
-}
-
-.content-between-sections-timeline {
-	width: 100%;
-    height: 5rem;
-    display: block;
-    position: relative;
-    box-shadow: 0px 0px 35px 50px #030f1d;
-	z-index: 999;
-}
-
-.content-between-sections-choose-plan {
-	width: 100%;
-    height: 5rem;
-    display: block;
-    position: relative;
-    box-shadow: 0px 0px 35px 50px #030f1d;
-	z-index: 999;
-}
-
-.content-between-sections-last {
-	width: 100%;
-    display: block;
-    position: relative;
-    box-shadow: 0px 0px 35px 50px #000102;
-	z-index: 999;
-}
-
-.content-between-sections {
-	width: 100%;
-    display: block;
-    position: absolute;
-    z-index: 999;
-    background: content-box;
-    box-shadow: 0px 0px 35px 50px #000613;
 }
 
 p, h1, h2, h3, h4, h5, h6, a  {
@@ -118,116 +51,12 @@ p, h1, h2, h3, h4, h5, h6, a  {
 	text-shadow: 5px 5px #030f1d;
 }
 
-.text-blue {
-	color: #136ffe;
-}
-
-.bg-blue {
-	background: #136ffe;
-}
-.bg-blue-card {
-	background: #136ffe;
-}
-.bg-blue-1 {
-	background: #136ffe;
-}
-
-.bg-black-custom {
-	background: #050a11;
-}
-
-.image-header {
-    height: 550px;
-    object-fit: cover;
-}
-
-@media (min-width: 1536px) {
-    .container-logo-menu {
-      max-width: 100% !important;
-    }
-  
-  }
-
-  @media (max-width: 768px) {
-	.bg-black-custom-mb {
-		background: #050a11;
-	}
-	.bg-transparent-mb {
-		background: transparent;
-	}
-  }
-
-@media (max-width: 480px) {
-    .image-effect-2{
-        display: none;
-    }
-  }
-
-
-  .bg-primary {
+.bg-primary {
 	--tw-bg-opacity: 1;
 	background-color: #1d1135;
-  }
+}
   
-  .bg-secondary {
+.bg-secondary {
 	--tw-bg-opacity: 1;
 	background-color: #6648c4;
-  }
-  
-  .swiper-slide {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-  }
-  
-  .swiper-slide .swiper-slide-shadow {
-	background: rgba(0, 0, 0, .15);
-	display: none !important;
-  }
-  
-  .swiper-pagination-bullet {
-	width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 16px)) !important;
-	height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 16px)) !important;
-	display: inline-block !important;
-	border-radius: 50% !important;
-	background: var(--swiper-pagination-bullet-inactive-color, #fff) !important;
-	opacity: var(--swiper-pagination-bullet-inactive-opacity, .7) !important;
-  }
-  
-  .swiper-pagination-bullet {
-	position: relative;
-	bottom: -3.5rem;
-  }
-  
-  .swiper-pagination-bullet-active {
-	opacity: var(--swiper-pagination-bullet-opacity, 1) !important;
-	background: #042A55 !important;
-	border: 3px solid #fff !important;
-	width: 16px !important;
-	height: 16px !important;
-  }
-  .swiper{
-	background: transparent!important;
-  }
-  
-  @media only screen and (max-width: 1520px) {
-  
-	.swiper-button-prev,
-	.swiper-rtl .swiper-button-next {
-	  left: var(--swiper-navigation-sides-offset, 250px);
-	}
-  
-	.swiper-button-next,
-	.swiper-rtl .swiper-button-prev {
-	  right: var(--swiper-navigation-sides-offset, 250px);
-	}
-  
-  }
-  
-  @media only screen and (max-width: 1200px) {
-  
-	.swiper-button-next,
-	.swiper-button-prev {
-	  display: none;
-	}
-  } 
+}

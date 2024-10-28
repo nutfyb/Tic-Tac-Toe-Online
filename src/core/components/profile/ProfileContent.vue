@@ -75,7 +75,7 @@
                     </div>
                     <ul class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-4 sm:mx-0">
                         <li v-for="achievement in allAchievements" :key="achievement.name"
-                            :class="['rounded-2xl p-4', achievement.achieved ? 'bg-achievement text-white' : 'bg-gray-700 text-white']">
+                            :class="['rounded-2xl p-4', achievement.achieved ? 'bg-gradient-spin text-white' : 'bg-gray-700 text-white']">
                             <div class="flex flex-col items-center justify-between mb-2">
                                 <img v-if="achievement.icon" :src="getAchievementIcon(achievement.icon)"
                                     :alt="achievement.name" class="w-16 h-16 my-4">
@@ -264,25 +264,4 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-.bg-achievement {
-    background-image: linear-gradient(45deg, #ff00cc, #3333ff, #00ffff);
-    background-size: 400% 400%;
-    box-shadow: 0px 0px 25px 0px rgba(63, 94, 251, 0.5);
-
-    animation: gradientSpin 5s ease infinite;
-}
-
-@keyframes gradientSpin {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
 </style>
