@@ -12,9 +12,6 @@
             </div>
           </a>
         </div>
-        <button v-else class="p-2 rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105">
-          <span class="icon-user w-6 h-6"></span>
-        </button>
         <a href="/rank"
           class="p-2 ms:p-2 md:p-2 rounded-full hover:bg-purple-800 transition-all duration-300 hover:scale-105">
           <img src="/assets/icons/cup.svg" alt="Logout" loading="lazy" class="w-6 h-6">
